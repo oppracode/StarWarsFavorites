@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import axios from "axios";
+import CharacterCard from "./CharacterCard";
 
-interface Character {
+export interface Character {
   name: string;
   gender: string;
   birth_year: string;
@@ -33,11 +34,9 @@ function CharacterList(): React.JSX.Element {
     loadInitialData();
   }, []);
 
-  const renderItem = ({ item }: { item: Character }) => (
-    <View style={styles.item}>
-      <Text style={styles.name}>{item.name}</Text>
-    </View>
-  );
+  function renderItem({ item }: { item: Character }) {
+    return <CharacterCard {...item} />;
+  }
 
   const loadMore = async () => {
     try {

@@ -1,10 +1,13 @@
-import { StyleSheet, Text } from "react-native";
+import React from "react";
+import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import CharacterDetails from "../components/CharacterDetails";
 
-function DetailsScreen(): React.JSX.Element {
+function DetailsScreen({ route }: any): React.JSX.Element {
+  const { character } = route.params;
   return (
     <SafeAreaView style={styles.sectionContainer}>
-      <Text style={styles.sectionTitle}>Still in development...</Text>
+      <CharacterDetails character={character} />
     </SafeAreaView>
   );
 }
