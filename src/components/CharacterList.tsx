@@ -53,7 +53,7 @@ function CharacterList(): React.JSX.Element {
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <FlatList
         data={characters}
         renderItem={renderItem}
@@ -64,19 +64,5 @@ function CharacterList(): React.JSX.Element {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  item: {
-    padding: 100,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
-  },
-  name: {
-    color: "red",
-  },
-});
 
 export default CharacterList;

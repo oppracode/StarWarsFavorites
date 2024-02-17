@@ -1,30 +1,33 @@
 import { useNavigation } from "@react-navigation/core";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Card, Text, ToggleButton } from "react-native-paper";
 
 function CharacterCard(props: any): React.JSX.Element {
   const navigation = useNavigation();
   function goToDetailsScreen(character: any) {
     navigation.navigate("Details", { character });
   }
+
   return (
-    <TouchableOpacity
-      style={styles.item}
+    <Card
+      mode="contained"
+      style={{ margin: 2 }}
       onPress={() => goToDetailsScreen(props)}
     >
-      <Text style={styles.name}>{props.name}</Text>
-    </TouchableOpacity>
+      <Card.Title title={props.name} style={{ alignSelf: "center" }} />
+      <Card.Content>
+        <Text variant="titleLarge">{props.name}</Text>
+        <Text variant="bodyMedium">Card content</Text>
+      </Card.Content>
+      <Card.Actions>
+        <ToggleButton
+          icon="heart"
+          value="heart"
+          iconColor="red"
+          status={"unchecked"}
+        />
+      </Card.Actions>
+    </Card>
   );
 }
-
-const styles = StyleSheet.create({
-  item: {
-    padding: 100,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
-  },
-  name: {
-    color: "red",
-  },
-});
 
 export default CharacterCard;
