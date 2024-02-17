@@ -1,10 +1,11 @@
 import { StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import CharacterList from "../components/CharacterList";
 
 function ListScreen(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.sectionContainer}>
-      <Text style={styles.sectionTitle}>Still in development...</Text>
+      <CharacterList />
     </SafeAreaView>
   );
 }
