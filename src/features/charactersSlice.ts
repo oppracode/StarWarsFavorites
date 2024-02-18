@@ -1,26 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export interface Character {
-  name: string;
-  gender: string;
-  birth_year: string;
-}
-
-interface APIResponse {
-  results: Character[];
-  next: string;
-  loading: boolean;
-  error: string | null;
-  isFetchingNextPage: boolean;
-}
-
 const initialState: APIResponse = {
   results: [],
   error: null,
   next: "",
   loading: false,
-  isFetchingNextPage: false,
 };
 
 const SWAPI_URL = "https://swapi.dev/api/people/";

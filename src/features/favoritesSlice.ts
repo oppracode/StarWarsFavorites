@@ -1,9 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { RootState } from "../store/store";
-
-export interface FavoritesState {
-  names: string[];
-}
 
 const initialState: FavoritesState = {
   names: [],

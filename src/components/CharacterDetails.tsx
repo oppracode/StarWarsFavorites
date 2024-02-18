@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { Character } from "./CharacterList";
 import { Card, Title, Paragraph, Button } from "react-native-paper";
 
 function CharacterDetails({
