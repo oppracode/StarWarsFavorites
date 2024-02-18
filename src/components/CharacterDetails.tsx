@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { Character } from "./CharacterList";
+import { Card, Title, Paragraph, Button } from "react-native-paper";
 
 function CharacterDetails({
   character,
@@ -7,10 +8,18 @@ function CharacterDetails({
   character: Character;
 }): React.JSX.Element {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{character.name}</Text>
-      <Text style={styles.text}>{character.gender}</Text>
-    </View>
+    <Card style={{ height: "100%", width: "100%" }}>
+      <Card.Title title="Card Title" subtitle="Card Subtitle" />
+      <Card.Content>
+        <Title>Card title</Title>
+        <Paragraph>Card content</Paragraph>
+      </Card.Content>
+      <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+      <Card.Actions>
+        <Button>Cancel</Button>
+        <Button>Ok</Button>
+      </Card.Actions>
+    </Card>
   );
 }
 

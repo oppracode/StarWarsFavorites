@@ -25,7 +25,7 @@ function CharacterCard(props: any): React.JSX.Element {
   return (
     <Card
       mode="contained"
-      style={{ margin: 2 }}
+      style={{ margin: 3 }}
       onPress={() => goToDetailsScreen(props)}
     >
       <Card.Title title={props.name} style={{ alignSelf: "center" }} />

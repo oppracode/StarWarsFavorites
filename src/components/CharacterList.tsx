@@ -16,6 +16,8 @@ interface APIResponse {
   next: string;
 }
 
+const containerStyle = { backgroundColor: "white", padding: 20 };
+
 function CharacterList(): React.JSX.Element {
   const characters = useAppSelector((state) => state.characters.results);
   const nextUrl = useAppSelector((state) => state.characters.next);
@@ -26,13 +28,15 @@ function CharacterList(): React.JSX.Element {
   );
 
   const handleEndReached = () => {
-    if (nextUrl && !isFetchingNextPage) {
+    if (nextUrl && !loading) {
       dispatch(fetchCharacters(nextUrl));
+      console.log(nextUrl);
     }
   };
 
   useEffect(() => {
     dispatch(fetchCharacters()); // Initial fetch
+    console.log("BAZINGA");
   }, [dispatch]);
 
   function renderItem({ item }: { item: Character }) {
@@ -40,8 +44,8 @@ function CharacterList(): React.JSX.Element {
   }
 
   return (
-    <View>
-      {loading ? (
+    <View style={{ padding: 10, flexDirection: "column" }}>
+      {loading && characters.length === 0 ? (
         <ActivityIndicator animating={true} color={"red"} />
       ) : (
         <FlatList
@@ -52,6 +56,7 @@ function CharacterList(): React.JSX.Element {
           onEndReachedThreshold={0.5} // Trigger load earlier
         />
       )}
+      <ActivityIndicator animating={true} color={"blue"} />
     </View>
   );
 }

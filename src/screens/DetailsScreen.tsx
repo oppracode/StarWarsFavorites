@@ -14,8 +14,7 @@ function DetailsScreen({ route }: any): React.JSX.Element {
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+    padding: 6,
     alignItems: "center",
   },
   sectionTitle: {

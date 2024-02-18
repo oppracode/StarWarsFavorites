@@ -65,6 +65,7 @@ const charactersSlice = createSlice({
       .addCase(fetchCharacters.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || "Something went wrong";
+        console.error(state.error);
       });
   },
 });
