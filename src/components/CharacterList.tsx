@@ -43,7 +43,14 @@ function CharacterList(): React.JSX.Element {
   }
 
   return (
-    <View style={{ padding: 10, flexDirection: "column", flex: 1 }}>
+    <View
+      style={{
+        paddingVertical: 10,
+        paddingHorizontal: 18,
+        flexDirection: "column",
+        flex: 1,
+      }}
+    >
       {loading && <LoadingIndicator />}
       <FlatList
         data={characters}

@@ -8,7 +8,7 @@ function LoadingIndicator(): React.JSX.Element {
         style={{
           margin: 2,
           position: "absolute",
-          bottom: 20,
+          top: 85,
           width: "80%",
           alignSelf: "center",
         }}

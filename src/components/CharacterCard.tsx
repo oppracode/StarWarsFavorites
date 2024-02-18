@@ -37,7 +37,6 @@ function CharacterCard(props: any): React.JSX.Element {
         <ToggleButton
           icon="heart"
           value="heart"
-          iconColor="red"
           status={"unchecked"}
           onPress={() => toggleFavorite()}
         />

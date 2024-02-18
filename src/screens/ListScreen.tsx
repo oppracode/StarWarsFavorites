@@ -6,16 +6,14 @@ import FavoritesDisplay from "../components/FavoritesDisplay";
 function ListScreen(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.sectionContainer}>
-      <FavoritesDisplay />
       <CharacterList />
+      <FavoritesDisplay />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
     flex: 1,
   },
 });

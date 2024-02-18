@@ -18,15 +18,19 @@ function FavoritesDisplay() {
         <Text key={name}>{name}</Text>
       ))}
       <Card mode="contained" style={{ margin: 2 }}>
-        <Card.Content style={{ flexDirection: "row" }}>
-          <Text variant="bodyMedium">Male: </Text>
-          <Text variant="bodyMedium">Female: </Text>
-          <Text variant="bodyMedium">Other: </Text>
+        <Card.Content style={{ flexDirection: "column" }}>
+          <Text variant="titleMedium">Male: </Text>
+          <Text variant="titleMedium">Female: </Text>
+          <Text variant="titleMedium">Other: </Text>
         </Card.Content>
+        <Button
+          mode="contained"
+          style={{ width: "50%", alignSelf: "center", marginVertical: 10 }}
+          onPress={() => clearFavorites()}
+        >
+          Reset
+        </Button>
       </Card>
-      <Button mode="outlined" onPress={() => clearFavorites()}>
-        Reset
-      </Button>
     </View>
   );
 }
