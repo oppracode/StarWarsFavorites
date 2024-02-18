@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
-    height: "90%",
+    flex: 1,
   },
 });
 

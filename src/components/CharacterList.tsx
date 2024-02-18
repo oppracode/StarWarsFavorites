@@ -3,7 +3,8 @@ import { View, FlatList } from "react-native";
 import CharacterCard from "./CharacterCard";
 import { fetchCharacters } from "../features/charactersSlice";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
-import { ActivityIndicator } from "react-native-paper";
+import { ActivityIndicator, Card, Text } from "react-native-paper";
+import LoadingIndicator from "./LoadingIndicator";
 
 export interface Character {
   name: string;
@@ -30,33 +31,27 @@ function CharacterList(): React.JSX.Element {
   const handleEndReached = () => {
     if (nextUrl && !loading) {
       dispatch(fetchCharacters(nextUrl));
-      console.log(nextUrl);
     }
   };
 
   useEffect(() => {
     dispatch(fetchCharacters()); // Initial fetch
-    console.log("BAZINGA");
-  }, [dispatch]);
+  }, []);
 
   function renderItem({ item }: { item: Character }) {
     return <CharacterCard {...item} />;
   }
 
   return (
-    <View style={{ padding: 10, flexDirection: "column" }}>
-      {loading && characters.length === 0 ? (
-        <ActivityIndicator animating={true} color={"red"} />
-      ) : (
-        <FlatList
-          data={characters}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.name}
-          onEndReached={handleEndReached}
-          onEndReachedThreshold={0.5} // Trigger load earlier
-        />
-      )}
-      <ActivityIndicator animating={true} color={"blue"} />
+    <View style={{ padding: 10, flexDirection: "column", flex: 1 }}>
+      {loading && <LoadingIndicator />}
+      <FlatList
+        data={characters}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.name}
+        onEndReached={handleEndReached}
+        onEndReachedThreshold={0.8} // Trigger load earlier
+      />
     </View>
   );
 }
