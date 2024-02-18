@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { View, FlatList, StyleSheet } from "react-native";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { View, FlatList } from "react-native";
 import CharacterCard from "./CharacterCard";
+import { fetchCharacters } from "../features/charactersSlice";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
+import { ActivityIndicator } from "react-native-paper";
 
 export interface Character {
   name: string;
@@ -15,52 +17,41 @@ interface APIResponse {
 }
 
 function CharacterList(): React.JSX.Element {
-  const [characters, setCharacters] = useState<Character[]>([]);
-  const [nextUrl, setNextUrl] = useState<string | null>(null);
+  const characters = useAppSelector((state) => state.characters.results);
+  const nextUrl = useAppSelector((state) => state.characters.next);
+  const loading = useAppSelector((state) => state.characters.loading);
+  const dispatch = useAppDispatch();
+  const isFetchingNextPage = useAppSelector(
+    (state) => state.characters.isFetchingNextPage
+  );
+
+  const handleEndReached = () => {
+    if (nextUrl && !isFetchingNextPage) {
+      dispatch(fetchCharacters(nextUrl));
+    }
+  };
 
   useEffect(() => {
-    const loadInitialData = async () => {
-      try {
-        const response = await axios.get<APIResponse>(
-          "https://swapi.dev/api/people/"
-        );
-        setCharacters(response.data.results);
-        setNextUrl(response.data.next);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    loadInitialData();
-  }, []);
+    dispatch(fetchCharacters()); // Initial fetch
+  }, [dispatch]);
 
   function renderItem({ item }: { item: Character }) {
     return <CharacterCard {...item} />;
   }
 
-  const loadMore = async () => {
-    try {
-      if (nextUrl) {
-        const response = await axios.get<APIResponse>(nextUrl);
-        setCharacters([...characters, ...response.data.results]);
-        setNextUrl(response.data.next);
-      } else {
-        console.log("All data loaded!");
-      }
-    } catch (error) {
-      console.error("Error fetching more data", error);
-    }
-  };
-
   return (
     <View>
-      <FlatList
-        data={characters}
-        renderItem={renderItem}
-        keyExtractor={(item: Character) => item.name}
-        onEndReached={loadMore}
-        onEndReachedThreshold={0.5}
-      ></FlatList>
+      {loading ? (
+        <ActivityIndicator animating={true} color={"red"} />
+      ) : (
+        <FlatList
+          data={characters}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.name}
+          onEndReached={handleEndReached}
+          onEndReachedThreshold={0.5} // Trigger load earlier
+        />
+      )}
     </View>
   );
 }

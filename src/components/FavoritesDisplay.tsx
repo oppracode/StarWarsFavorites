@@ -1,13 +1,12 @@
 import React from "react";
 import { View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/store";
 import { Button, Card, Text } from "react-native-paper";
 import { clearAllFavorites } from "../features/favoritesSlice";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
 function FavoritesDisplay() {
-  const favorites = useSelector((state: RootState) => state.favorites.names);
-  const dispatch = useDispatch();
+  const favorites = useAppSelector((state) => state.favorites.names);
+  const dispatch = useAppDispatch();
 
   function clearFavorites() {
     dispatch(clearAllFavorites());
@@ -16,10 +15,9 @@ function FavoritesDisplay() {
   return (
     <View>
       {favorites.map((name) => (
-        <Text key={name}>{name}</Text> // Added a 'key' prop
+        <Text key={name}>{name}</Text>
       ))}
       <Card mode="contained" style={{ margin: 2 }}>
-        <Card.Title title={favorites} style={{ alignSelf: "center" }} />
         <Card.Content style={{ flexDirection: "row" }}>
           <Text variant="bodyMedium">Male: </Text>
           <Text variant="bodyMedium">Female: </Text>
