@@ -8,11 +8,28 @@ interface FavoritesState {
 interface Character {
   name: string;
   gender: string;
+  birthYear: string;
+  skinColor: string;
+  eyeColor: string;
+  mass: string;
+  height: string;
+}
+
+interface RawCharacter {
+  name: string;
+  gender: string;
   birth_year: string;
   skin_color: string;
   eye_color: string;
   mass: string;
   height: string;
+}
+
+interface RawAPIResponse {
+  results: RawCharacter[];
+  next: string;
+  loading: boolean;
+  error: string | null;
 }
 
 interface APIResponse {

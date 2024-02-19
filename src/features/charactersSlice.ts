@@ -11,6 +11,18 @@ const initialState: APIResponse = {
 // Default API url
 const SWAPI_URL = "https://swapi.dev/api/people/";
 
+function toCharacter(character: RawCharacter): Character {
+  return {
+    name: character.name,
+    gender: character.gender,
+    birthYear: character.birth_year,
+    skinColor: character.skin_color,
+    eyeColor: character.eye_color,
+    mass: character.mass,
+    height: character.height,
+  };
+}
+
 // Making API calls, either by using default ulr or next pagination url from a state
 export const fetchCharacters = createAsyncThunk(
   "characters/fetchCharacters",
@@ -18,9 +30,14 @@ export const fetchCharacters = createAsyncThunk(
     const fetchUrl = url;
 
     try {
-      const response = await axios.get<APIResponse>(fetchUrl);
-
-      return response.data;
+      const response = await axios.get<RawAPIResponse>(fetchUrl);
+      const changedCharacters = response.data.results.map(toCharacter);
+      return {
+        results: changedCharacters,
+        next: response.data.next,
+        loading: response.data.loading,
+        error: response.data.error,
+      };
     } catch (error) {
       if (axios.isAxiosError(error)) {
         throw new Error(error.message);

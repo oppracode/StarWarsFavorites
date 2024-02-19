@@ -37,7 +37,7 @@ function CharacterCard(character: Character): React.JSX.Element {
       <Card.Title title={character.name} titleStyle={styles.titleText} />
       <Card.Content>
         <Text variant="labelLarge">Gender: {character.gender}</Text>
-        <Text variant="labelLarge">Birth year: {character.birth_year}</Text>
+        <Text variant="labelLarge">Birth year: {character.birthYear}</Text>
       </Card.Content>
       <Card.Actions>
         <ToggleButton

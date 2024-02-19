@@ -12,10 +12,10 @@ function CharacterDetails({
         <Text variant="titleLarge" style={styles.nameText}>
           {character.name}
         </Text>
-        <Text variant="titleLarge">Birth year: {character.birth_year}</Text>
+        <Text variant="titleLarge">Birth year: {character.birthYear}</Text>
         <Text variant="titleLarge">Gender: {character.gender}</Text>
-        <Text variant="titleLarge">Skin color: {character.skin_color}</Text>
-        <Text variant="titleLarge">Eye color: {character.eye_color}</Text>
+        <Text variant="titleLarge">Skin color: {character.skinColor}</Text>
+        <Text variant="titleLarge">Eye color: {character.eyeColor}</Text>
         <Text variant="titleLarge">Mass: {character.mass}kg</Text>
         <Text variant="titleLarge">Height: {character.height}cm</Text>
       </Card.Content>
