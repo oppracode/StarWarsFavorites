@@ -1,15 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// Initial state for API response
 const initialState: APIResponse = {
   results: [],
   error: null,
   next: "",
   loading: false,
 };
-
+// Default API url
 const SWAPI_URL = "https://swapi.dev/api/people/";
 
+// Making API calls, either by using default ulr or next pagination url from a state
 export const fetchCharacters = createAsyncThunk(
   "characters/fetchCharacters",
   async (url: string | undefined = SWAPI_URL): Promise<APIResponse> => {
@@ -29,6 +31,7 @@ export const fetchCharacters = createAsyncThunk(
   }
 );
 
+// Slice to handle changes of API data state
 const charactersSlice = createSlice({
   name: "characters",
   initialState,

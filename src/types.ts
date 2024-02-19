@@ -24,5 +24,5 @@ interface APIResponse {
 
 type RootStackParamList = {
   List: undefined; // No params for List screen
-  Details: { character: Character }; // Details screen expects a 'character'
+  Details: { character: Character }; // Details screen expects a character
 };

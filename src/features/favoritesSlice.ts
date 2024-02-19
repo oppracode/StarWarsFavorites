@@ -13,6 +13,7 @@ const favoritesSlice = createSlice({
   reducers: {
     addFavorite(state, action: { payload: Character }) {
       state.names.push(action.payload.name);
+      // Checking genders and changing gender fields
       if (action.payload.gender === "male") {
         state.male += 1;
       } else if (action.payload.gender === "female") {
@@ -23,6 +24,7 @@ const favoritesSlice = createSlice({
     },
     removeFavorite(state, action: { payload: Character }) {
       state.names = state.names.filter((name) => name !== action.payload.name);
+      // Checking genders and changing gender fields
       if (action.payload.gender === "male") {
         state.male -= 1;
       } else if (action.payload.gender === "female") {

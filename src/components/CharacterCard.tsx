@@ -6,23 +6,25 @@ import { RootState } from "../store/store";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useAppDispatch } from "../hooks/hooks";
 
 function CharacterCard(character: Character): React.JSX.Element {
-  const favorites = useSelector((state: RootState) => state.favorites.names); // Access favorites
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList, "Details">>();
 
-  const isFavorite = favorites.includes(character.name);
+  const favorites = useSelector((state: RootState) => state.favorites.names); // Access favorites
+  const isFavorite = favorites.includes(character.name); // Check if item is favorite
 
   const toggleFavorite = () => {
     if (isFavorite) {
-      dispatch(removeFavorite(character));
+      dispatch(removeFavorite(character)); // Dispatch action to remove a character from favorites
     } else {
-      dispatch(addFavorite(character));
+      dispatch(addFavorite(character)); // Dispatch action to add a character to favorites
     }
   };
   function goToDetailsScreen(character: any) {
+    // Handle navigation to another screen
     navigation.navigate("Details", { character });
   }
 
@@ -40,11 +42,11 @@ function CharacterCard(character: Character): React.JSX.Element {
       <Card.Actions>
         <ToggleButton
           icon="heart"
-          value="heart"
+          value="favorite"
           rippleColor={"purple"}
-          status={isFavorite === true ? "checked" : "unchecked"}
+          status={isFavorite === true ? "checked" : "unchecked"} // If character is in favories, make button checked
           onPress={() => toggleFavorite()}
-          iconColor={isFavorite === true ? "purple" : "white"}
+          iconColor={isFavorite === true ? "purple" : "white"} // If character is in favorites, change button color
         />
       </Card.Actions>
     </Card>
@@ -60,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CharacterCard;
+export default React.memo(CharacterCard); // added memo, otherwise it will re-render every time a new data fetch is made

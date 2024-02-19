@@ -5,14 +5,13 @@ import { clearAllFavorites } from "../features/favoritesSlice";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
 function FavoritesDisplay() {
-  const favorites = useAppSelector((state) => state.favorites.names);
-  const maleCount = useAppSelector((state) => state.favorites.male);
-  const femaleCount = useAppSelector((state) => state.favorites.female);
-  const otherCount = useAppSelector((state) => state.favorites.other);
+  const maleCount = useAppSelector((state) => state.favorites.male); // Access male favorites
+  const femaleCount = useAppSelector((state) => state.favorites.female); // Access female favorties
+  const otherCount = useAppSelector((state) => state.favorites.other); // Acess n/a favorites
   const dispatch = useAppDispatch();
 
   function clearFavorites() {
-    dispatch(clearAllFavorites());
+    dispatch(clearAllFavorites()); // Action call to remove all favorites from our state, all of them
   }
 
   return (
@@ -29,7 +28,7 @@ function FavoritesDisplay() {
       <Button
         mode="contained"
         style={styles.button}
-        onPress={() => clearFavorites()}
+        onPress={() => clearFavorites()} // Button to reset favorites
       >
         Reset
       </Button>
