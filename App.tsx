@@ -25,7 +25,7 @@ function App(): React.JSX.Element {
     <Provider store={store}>
       <PaperProvider theme={theme}>
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator initialRouteName="List">
             <Stack.Screen name="List" component={ListScreen} />
             <Stack.Screen name="Details" component={DetailsScreen} />
           </Stack.Navigator>

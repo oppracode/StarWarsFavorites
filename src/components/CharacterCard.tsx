@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeFavorite, addFavorite } from "../features/favoritesSlice";
 import { RootState } from "../store/store";
 import React from "react";
+import { StyleSheet } from "react-native";
 
 function CharacterCard(character: Character): React.JSX.Element {
   const favorites = useSelector((state: RootState) => state.favorites.names); // Access favorites
@@ -26,13 +27,12 @@ function CharacterCard(character: Character): React.JSX.Element {
   return (
     <Card
       mode="contained"
-      style={{ margin: 3 }}
+      style={styles.container}
       onPress={() => goToDetailsScreen(character)}
     >
-      <Card.Title title={character.name} style={{ alignSelf: "center" }} />
+      <Card.Title title={character.name} titleStyle={styles.titleText} />
       <Card.Content>
         <Text variant="labelLarge">Gender: {character.gender}</Text>
-        <Text variant="labelLarge">Birth year: {character.birth_year}</Text>
         <Text variant="labelLarge">Birth year: {character.birth_year}</Text>
       </Card.Content>
       <Card.Actions>
@@ -48,5 +48,14 @@ function CharacterCard(character: Character): React.JSX.Element {
     </Card>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    margin: 3,
+  },
+  titleText: {
+    alignSelf: "center",
+  },
+});
 
 export default CharacterCard;

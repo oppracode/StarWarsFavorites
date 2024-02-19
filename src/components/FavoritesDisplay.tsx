@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { StyleSheet } from "react-native";
 import { Button, Card, Text } from "react-native-paper";
 import { clearAllFavorites } from "../features/favoritesSlice";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
@@ -16,15 +16,19 @@ function FavoritesDisplay() {
   }
 
   return (
-    <Card mode="contained" style={{ margin: 2 }}>
-      <Card.Content style={{ flexDirection: "column" }}>
+    <Card mode="contained">
+      <Card.Title
+        title="Favorite Characters"
+        titleStyle={styles.title}
+      ></Card.Title>
+      <Card.Content>
         <Text variant="titleMedium">Male: {maleCount}</Text>
         <Text variant="titleMedium">Female: {femaleCount}</Text>
         <Text variant="titleMedium">N/a: {otherCount}</Text>
       </Card.Content>
       <Button
         mode="contained"
-        style={{ width: "50%", alignSelf: "center", marginVertical: 10 }}
+        style={styles.button}
         onPress={() => clearFavorites()}
       >
         Reset
@@ -32,5 +36,14 @@ function FavoritesDisplay() {
     </Card>
   );
 }
+
+const styles = StyleSheet.create({
+  title: { alignSelf: "center" },
+  button: {
+    width: "50%",
+    alignSelf: "center",
+    marginVertical: 10,
+  },
+});
 
 export default FavoritesDisplay;

@@ -10,17 +10,14 @@ const initialState: APIResponse = {
 
 const SWAPI_URL = "https://swapi.dev/api/people/";
 
-export const fetchCharacters = createAsyncThunk<
-  APIResponse,
-  string | undefined,
-  { rejectValue: string }
->(
+export const fetchCharacters = createAsyncThunk(
   "characters/fetchCharacters",
   async (url: string | undefined = SWAPI_URL): Promise<APIResponse> => {
     const fetchUrl = url;
 
     try {
       const response = await axios.get<APIResponse>(fetchUrl);
+
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {

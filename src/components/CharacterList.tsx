@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, FlatList } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import CharacterCard from "./CharacterCard";
 import { fetchCharacters } from "../features/charactersSlice";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
@@ -28,24 +28,26 @@ function CharacterList(): React.JSX.Element {
   }
 
   return (
-    <View
-      style={{
-        paddingVertical: 10,
-        paddingHorizontal: 18,
-        flexDirection: "column",
-        flex: 1,
-      }}
-    >
+    <View style={styles.container}>
       {loading && <LoadingIndicator />}
       <FlatList
         data={characters}
         renderItem={renderItem}
         keyExtractor={(item) => item.name}
         onEndReached={handleEndReached}
-        onEndReachedThreshold={0.8} // Trigger load earlier
+        onEndReachedThreshold={0.8}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 10,
+    paddingHorizontal: 18,
+    flexDirection: "column",
+    flex: 1,
+  },
+});
 
 export default CharacterList;
