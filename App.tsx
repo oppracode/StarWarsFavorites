@@ -10,7 +10,7 @@ import {
   PaperProvider,
 } from "react-native-paper";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 const theme = {
   ...DefaultTheme,
   colors: {

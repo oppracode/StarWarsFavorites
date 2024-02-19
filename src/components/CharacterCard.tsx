@@ -5,10 +5,13 @@ import { removeFavorite, addFavorite } from "../features/favoritesSlice";
 import { RootState } from "../store/store";
 import React from "react";
 import { StyleSheet } from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 function CharacterCard(character: Character): React.JSX.Element {
   const favorites = useSelector((state: RootState) => state.favorites.names); // Access favorites
   const dispatch = useDispatch();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList, "Details">>();
 
   const isFavorite = favorites.includes(character.name);
 
@@ -19,7 +22,6 @@ function CharacterCard(character: Character): React.JSX.Element {
       dispatch(addFavorite(character));
     }
   };
-  const navigation = useNavigation();
   function goToDetailsScreen(character: any) {
     navigation.navigate("Details", { character });
   }

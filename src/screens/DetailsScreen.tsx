@@ -2,9 +2,14 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CharacterDetails from "../components/CharacterDetails";
 import { StyleSheet } from "react-native";
+import { RouteProp, useRoute } from "@react-navigation/native";
 
-function DetailsScreen({ route }: any): React.JSX.Element {
-  const { character } = route.params;
+type DetailsScreenRouteProp = RouteProp<RootStackParamList, "Details">;
+
+function DetailsScreen(): React.JSX.Element {
+  const route = useRoute<DetailsScreenRouteProp>();
+  const character = route.params?.character;
+
   return (
     <SafeAreaView style={styles.container}>
       <CharacterDetails character={character} />
