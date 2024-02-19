@@ -16,7 +16,7 @@ function LoadingIndicator(): React.JSX.Element {
         <Card.Content
           style={{ flexDirection: "row", justifyContent: "center" }}
         >
-          <ActivityIndicator animating={true} color={"red"} />
+          <ActivityIndicator animating={true} color={"purple"} />
           <Text variant="labelLarge" style={{ marginLeft: 10 }}>
             Loading
           </Text>
