@@ -5,17 +5,17 @@ import { removeFavorite, addFavorite } from "../features/favoritesSlice";
 import { RootState } from "../store/store";
 import React from "react";
 
-function CharacterCard(props: any): React.JSX.Element {
+function CharacterCard(character: Character): React.JSX.Element {
   const favorites = useSelector((state: RootState) => state.favorites.names); // Access favorites
   const dispatch = useDispatch();
 
-  const isFavorite = favorites.includes(props.name);
+  const isFavorite = favorites.includes(character.name);
 
   const toggleFavorite = () => {
     if (isFavorite) {
-      dispatch(removeFavorite(props));
+      dispatch(removeFavorite(character));
     } else {
-      dispatch(addFavorite(props));
+      dispatch(addFavorite(character));
     }
   };
   const navigation = useNavigation();
@@ -27,12 +27,13 @@ function CharacterCard(props: any): React.JSX.Element {
     <Card
       mode="contained"
       style={{ margin: 3 }}
-      onPress={() => goToDetailsScreen(props)}
+      onPress={() => goToDetailsScreen(character)}
     >
-      <Card.Title title={props.name} style={{ alignSelf: "center" }} />
+      <Card.Title title={character.name} style={{ alignSelf: "center" }} />
       <Card.Content>
-        <Text variant="titleLarge">{props.name}</Text>
-        <Text variant="bodyMedium">Card content</Text>
+        <Text variant="labelLarge">Gender: {character.gender}</Text>
+        <Text variant="labelLarge">Birth year: {character.birth_year}</Text>
+        <Text variant="labelLarge">Birth year: {character.birth_year}</Text>
       </Card.Content>
       <Card.Actions>
         <ToggleButton
