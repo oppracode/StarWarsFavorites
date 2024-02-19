@@ -1,5 +1,8 @@
 interface FavoritesState {
   names: string[];
+  male: number;
+  female: number;
+  other: number;
 }
 
 interface Character {

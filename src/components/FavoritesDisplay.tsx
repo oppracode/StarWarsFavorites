@@ -6,6 +6,9 @@ import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
 function FavoritesDisplay() {
   const favorites = useAppSelector((state) => state.favorites.names);
+  const maleCount = useAppSelector((state) => state.favorites.male);
+  const femaleCount = useAppSelector((state) => state.favorites.female);
+  const otherCount = useAppSelector((state) => state.favorites.other);
   const dispatch = useAppDispatch();
 
   function clearFavorites() {
@@ -13,25 +16,20 @@ function FavoritesDisplay() {
   }
 
   return (
-    <View>
-      {favorites.map((name) => (
-        <Text key={name}>{name}</Text>
-      ))}
-      <Card mode="contained" style={{ margin: 2 }}>
-        <Card.Content style={{ flexDirection: "column" }}>
-          <Text variant="titleMedium">Male: </Text>
-          <Text variant="titleMedium">Female: </Text>
-          <Text variant="titleMedium">Other: </Text>
-        </Card.Content>
-        <Button
-          mode="contained"
-          style={{ width: "50%", alignSelf: "center", marginVertical: 10 }}
-          onPress={() => clearFavorites()}
-        >
-          Reset
-        </Button>
-      </Card>
-    </View>
+    <Card mode="contained" style={{ margin: 2 }}>
+      <Card.Content style={{ flexDirection: "column" }}>
+        <Text variant="titleMedium">Male: {maleCount}</Text>
+        <Text variant="titleMedium">Female: {femaleCount}</Text>
+        <Text variant="titleMedium">N/a: {otherCount}</Text>
+      </Card.Content>
+      <Button
+        mode="contained"
+        style={{ width: "50%", alignSelf: "center", marginVertical: 10 }}
+        onPress={() => clearFavorites()}
+      >
+        Reset
+      </Button>
+    </Card>
   );
 }
 
