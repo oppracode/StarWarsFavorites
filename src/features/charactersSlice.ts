@@ -11,6 +11,7 @@ const initialState: APIResponse = {
 // Default API url
 const SWAPI_URL = "https://swapi.dev/api/people/";
 
+// Maping raw character data to app's type
 function toCharacter(character: RawCharacter): Character {
   return {
     name: character.name,

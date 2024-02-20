@@ -16,8 +16,14 @@ function CharacterDetails({
         <Text variant="titleLarge">Gender: {character.gender}</Text>
         <Text variant="titleLarge">Skin color: {character.skinColor}</Text>
         <Text variant="titleLarge">Eye color: {character.eyeColor}</Text>
-        <Text variant="titleLarge">Mass: {character.mass}kg</Text>
-        <Text variant="titleLarge">Height: {character.height}cm</Text>
+        <Text variant="titleLarge">
+          Mass: {character.mass}
+          {character.mass !== "unknown" && "kg"}
+        </Text>
+        <Text variant="titleLarge">
+          Height: {character.height}
+          {character.height !== "unknown" && "cm"}
+        </Text>
       </Card.Content>
     </Card>
   );
