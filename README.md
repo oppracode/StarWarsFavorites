@@ -13,7 +13,11 @@ charactersSlice.ts - a redux toolkit driven file that handles all API call logic
 favortiesSlice.ts - a redux toolkit driven file that handles a global state of favorited characters.
 hooks.ts - a file containing information about useDispatch and useSelector from redux toolkit, allows for easier implementation of said functions with typescript.
 
+
+
 DetailsScreen.tsx - a component that serves as a secondary screen that users can navigate to by pressing a character card. Displays CharacterDetails.tsx.
+
+
 ListScreen - a component that serves as an initional screen for the app. An initial API call is called from this component. Displays all other components, other than CharacterDetails.tsx.
 
 store.ts - redux toolkit driven file that stores information about app's global states.
@@ -21,3 +25,6 @@ store.ts - redux toolkit driven file that stores information about app's global 
 types.ts - a typescript-related file where app's typescript interfaces and types are listed. These types are used all across the app's logic.
 
 App.tsx - serves as an entry point to the program.
+
+
+https://github.com/oppracode/StarWarsFavorites/assets/133806414/57267548-3395-4fda-943a-3e4838d4c95a
