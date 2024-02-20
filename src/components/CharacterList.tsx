@@ -5,8 +5,6 @@ import { fetchCharacters } from "../features/charactersSlice";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import LoadingIndicator from "./LoadingIndicator";
 
-const containerStyle = { backgroundColor: "white", padding: 20 };
-
 function CharacterList(): React.JSX.Element {
   const characters = useAppSelector((state) => state.characters.results); // Access characters
   const nextUrl = useAppSelector((state) => state.characters.next); // Access next pagination url

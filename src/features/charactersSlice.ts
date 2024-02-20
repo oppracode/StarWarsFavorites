@@ -8,7 +8,7 @@ const initialState: APIResponse = {
   next: "",
   loading: false,
 };
-// Default API url
+// Default API url. Ideally should be moved to another file, but for the purpose of this app this solution works just fine
 const SWAPI_URL = "https://swapi.dev/api/people/";
 
 // Maping raw character data to app's type
